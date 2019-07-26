@@ -1,45 +1,97 @@
-#board{
-    width: 300px;
+body {
+  background-image: url("../img/background.jpg");
+  background-repeat: no-repeat;
+  height: 100%;
+  background-size: cover;
+  background-attachment: fixed
+}
+
+#big-circle {
+  background: #385a94;
+  border-radius: 50%;
+  height: 600px;
+  width: 600px;
+  position: relative;
+  border-style: solid;
+  border-width: 10px;
+  margin: auto;
+  margin-top: 190px;
+  box-shadow: 8px 8px 15px 5px #888888;
+}
+
+#top-left {
+    position: absolute;
     height: 300px;
-    background-color: rgb(160, 154, 154);
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-div {
-    float: left ;
-    width: 100px;
-    height: 100px;
-    border: 1px solid blue;
-    margin: 24px;
-}
-
-#top-left{
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    border-radius: 300px 0 0 0;
     background: darkgreen;
+    top:50%;
+    -moz-border-radius: 300px 0 0 0;
+    -webkit-border-radius: 300px 0 0 0;
+    left: 50%;
+    margin: -300px 0px 0px -300px;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
-#top-rigth{
-    width: 100px;
-    height: 100px;
+#top-rigth {
+    position: absolute;
     background: darkred;
+    height: 300px;
+    width: 300px;
+    top:50%;
+    left: 50%;
+    border-radius: 0 300px 0 0;
+    -moz-border-radius: 0 300px 0 0;
+    -webkit-border-radius: 0 300px 0 0;
+    margin: -300px 300px 0 0;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
-#down-left{
-    clear: left;
-    width: 100px;
-    height: 100px;
+#down-left {
+    position: absolute;
+    height: 300px;
+    width: 300px;
     background: goldenrod;
+    top:50%;
+    border-radius: 0 0 0 300px;
+    -moz-border-radius: 0 0 0 300px;
+    -webkit-border-radius: 0 0 0 300px;
+    left: 50%;
+    margin: 0 0 0 -300px;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
-#down-rigth{
-    width: 100px;
-    height: 100px;
-    background: darkblue
+#down-rigth {
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    border-radius: 0 0 300px 0;
+    -moz-border-radius: 0 0 300px 0;
+    -webkit-border-radius: 0 0 300px 0;
+    background: darkblue;
+    top:50%;
+    left: 50%;
+    margin: 0px 0px 0px 0px;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
-h1{
-    text-align: center
+#inner-circle{
+    position: absolute;
+    
 }
