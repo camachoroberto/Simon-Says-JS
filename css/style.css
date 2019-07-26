@@ -1,7 +1,7 @@
 #board{
     width: 300px;
     height: 300px;
-    background-color: black;
+    background-color: rgb(160, 154, 154);
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -18,26 +18,26 @@ div {
 #top-left{
     width: 100px;
     height: 100px;
-    background: green;
+    background: darkgreen;
 }
 
 #top-rigth{
     width: 100px;
     height: 100px;
-    background: red;
+    background: darkred;
 }
 
 #down-left{
     clear: left;
     width: 100px;
     height: 100px;
-    background: yellow;
+    background: goldenrod;
 }
 
 #down-rigth{
     width: 100px;
     height: 100px;
-    background: blue
+    background: darkblue
 }
 
 h1{
