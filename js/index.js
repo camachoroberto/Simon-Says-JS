@@ -1,165 +1,255 @@
 // Variáveis globais
-let simonSequence = [];
-let playerSequence = [];
-let numOfLevels = 20;
-let numberFlashLight;
-let simonTurn;
-let intervalFlashLight;
+let simonSequence = []; //order
+let playerSequence = []; //playerOrder
+let numOfLevels = 3; // xxxx
+let numberFlashLight; //flash
+let simonTurn; //turn
+let good; //good
+let compTurn; //compTurn
+let intervalFlashLight; //intervalId
 
-let strict = false
-let on = true;
+let strict = false;
+let noise = true;
+let on = false;
 let win;
 
+let winnerAudio = new Audio('included/sounds/winner.mp3');
+let errorStar = new Audio('included/sounds/error.mp3');
+let errorAudio = new Audio('included/sounds/lose.wav');
+let simonSound1 = new Audio('included/sounds/simonSound1.mp3');
+let simonSound2 = new Audio('included/sounds/simonSound2.mp3');
+let simonSound3 = new Audio('included/sounds/simonSound3.mp3');
+let simonSound4 = new Audio('included/sounds/simonSound4.mp3');
+let selectSound = new Audio('included/sounds/select.mp3');
+let starSound = new Audio('included/sounds/start.wav');
+
 // Seleção das cores do jogo
+const turnCounter = document.querySelector("#turn");
 const topLeft = document.querySelector('#top-left');
 const topRigth = document.querySelector('#top-rigth');
 const downLeft = document.querySelector('#down-left');
 const downRigth = document.querySelector('#down-rigth');
-const turnCounter = document.querySelector('#count');
 
 const strictButton = document.querySelector("#strict");
 const onButton = document.querySelector("#on");
 const startButton = document.querySelector("#start");
 
-
 strictButton.addEventListener('click', (event) => {
-    if (strictButton.checked ==true){
-        strict = true;
-    }else{
-        strict = false;
-    };
+  if (strictButton.checked == true) {
+    strict = true;
+    selectSound.play();
+  } else {
+    strict = false;
+    selectSound.play();
+  }
 });
 
-onButton.addEventListener('click', (event) =>{
-    if(onButton.checked == true){
-        on = true;
-        turnCounter.innerHTML = "-";
-    } else{
-        on = false;
-        turnCounter.innerHTML = "";
-        clearColor();
-        clearInterval(intervalFlashLight);
-    }
-})
-
-startButton.addEventListener('click', (event) =>{
-    if(on || win){
-        simonPlay();
-    }
+onButton.addEventListener('click', (event) => {
+  if (onButton.checked == true) {
+    on = true;
+    turnCounter.innerHTML = "-";
+    selectSound.play();
+  } else {
+    on = false;
+    turnCounter.innerHTML = "";
+    clearColor();
+    selectSound.play();
+    clearInterval(intervalFlashLight);
+  }
 });
 
+startButton.addEventListener('click', (event) => {
+  if (on || win) {
+    starSound.play();
+    simonPlay();
+  } else{
+    errorStar.play();
+  }
+});
 // Sequência aleatória das cores do jogo
 function simonPlay() {
-    simonTurn = 1;
-    for (let i = 0; i < numOfLevels; i++) {
-        simonSequence.push(Math.floor(Math.random() * 4) + 1);
-    }
-
-    intervalFlashLight = setInterval(gameTurn, 800);
+  win = false;
+  simonSequence = [];
+  playerSequence = [];
+  numberFlashLight = 0;
+  simonTurn = 1;
+  turnCounter.innerHTML = 1;
+  good = true;
+  for (let i = 0; i < numOfLevels; i++) {
+    simonSequence.push(Math.floor(Math.random() * 4) + 1);
+  }
+  compTurn = true;
+  intervalFlashLight = setInterval(gameTurn, 800);
 }
 
 // Turno do jogo
 function gameTurn() {
+  on = false;
+  if (numberFlashLight == simonTurn) {
+    clearInterval(intervalFlashLight);
+    compTurn = false;
+    clearColor();
+    on = true;
+  }
 
-    if (numberFlashLight == simonTurn) {
-        clearInterval(intervalFlashLight);
-        clearColor();
-    }
-
-    if (simonSequence) {
-        clearColor();
-        setTimeout(() => {
-            if (simonSequence[numberFlashLight] === 1) one();
-            if (simonSequence[numberFlashLight] === 2) two();
-            if (simonSequence[numberFlashLight] === 3) three();
-            if (simonSequence[numberFlashLight] === 4) four();
-            numberFlashLight++;
-        }, 200);
-    }
+  if (compTurn) {
+    clearColor();
+    setTimeout(() => {
+      if (simonSequence[numberFlashLight] == 1) one();
+      if (simonSequence[numberFlashLight] == 2) two();
+      if (simonSequence[numberFlashLight] == 3) three();
+      if (simonSequence[numberFlashLight] == 4) four();
+      numberFlashLight++;
+    }, 200);
+  }
 }
 
 // Alternância das cores selecionadas
 function one() {
-    topLeft.style.backgroundColor = 'lightgreen';
+  if (noise) {
+    simonSound1.play();
+  }
+  noise = true;
+  topLeft.style.backgroundColor = 'lightgreen';
 }
 
 function two() {
-    topRigth.style.backgroundColor = 'tomato';
+  if (noise) {
+    simonSound2.play();
+  }
+  noise = true;
+  topRigth.style.backgroundColor = 'tomato';
 }
 
 function three() {
-    downLeft.style.backgroundColor = 'yellow';
+  if (noise) {
+    simonSound3.play();
+  }
+  noise = true;
+  downLeft.style.backgroundColor = 'yellow';
 }
 
 function four() {
-    downRigth.style.backgroundColor = 'lightskyblue';
+  if (noise) {
+    simonSound4.play();
+  }
+  noise = true;
+  downRigth.style.backgroundColor = 'lightskyblue';
 }
 
 function clearColor() {
-    topLeft.style.backgroundColor = 'darkgreen';
-    topRigth.style.backgroundColor = 'darkred';
-    downLeft.style.backgroundColor = 'goldenrod';
-    downRigth.style.backgroundColor = 'darkblue';
+  topLeft.style.backgroundColor = 'darkgreen';
+  topRigth.style.backgroundColor = 'darkred';
+  downLeft.style.backgroundColor = 'goldenrod';
+  downRigth.style.backgroundColor = 'darkblue';
 }
 
 function flashColor() {
-    topLeft.style.backgroundColor = 'lightgreen';
-    topRigth.style.backgroundColor = 'tomato';
-    downLeft.style.backgroundColor = 'yellow';
-    downRigth.style.backgroundColor = 'lightskyblue';
+  topLeft.style.backgroundColor = 'lightgreen';
+  topRigth.style.backgroundColor = 'tomato';
+  downLeft.style.backgroundColor = 'yellow';
+  downRigth.style.backgroundColor = 'lightskyblue';
 }
 
 // Preferência das cores do jogador
 topLeft.addEventListener('click', (event) => {
+  if (on) {
     playerSequence.push(1);
     verifySelected();
     one();
     if (!win) {
-        setTimeout(() => {
-            clearColor();
-        }, 300);
+      setTimeout(() => {
+        clearColor();
+      }, 300);
     }
+  }
 });
 
 topRigth.addEventListener('click', (event) => {
+  if (on) {
     playerSequence.push(2);
     verifySelected();
     two();
     if (!win) {
-        setTimeout(() => {
-            clearColor();
-        }, 300);
+      setTimeout(() => {
+        clearColor();
+      }, 300);
     }
+  }
 });
 
 downLeft.addEventListener('click', (event) => {
+  if (on) {
     playerSequence.push(3);
     verifySelected();
     three();
     if (!win) {
-        setTimeout(() => {
-            clearColor();
-        }, 300);
+      setTimeout(() => {
+        clearColor();
+      }, 300);
     }
+  }
 });
 
 downRigth.addEventListener('click', (event) => {
+  if (on) {
     playerSequence.push(4);
+    verifySelected();
     four();
     if (!win) {
-        setTimeout(() => {
-            clearColor();
-        }, 300);
+      setTimeout(() => {
+        clearColor();
+      }, 300);
     }
+  }
 });
 
-function verifySelected () {
-    if(simonTurn == playerSequence.length){
-        simonTurn++;
-        playerSequence = []
-        intervalFlashLight = setInterval( gameTurn,800)
-    }
+function verifySelected() {
+  if (playerSequence[playerSequence.length - 1] !== simonSequence[playerSequence.length - 1]) {
+    good = false;
+  }
+  console.log(`level ${numOfLevels}`);
+  console.log(`play ${playerSequence}`);
+  if (playerSequence.length == numOfLevels && good) {
+    winGame();
+  }
+
+  if (good == false) {
+    flashColor();
+    turnCounter.innerHTML = 'NO!';
+    errorAudio.play();
+    setTimeout(() => {
+      turnCounter.innerHTML = simonTurn;
+      clearColor();
+
+      if (strict) {
+        simonPlay();
+      } else {
+        compTurn = true;
+        numberFlashLight = 0;
+        playerSequence = [];
+        good = true;
+        intervalFlashLight = setInterval(gameTurn, 800);
+      };
+    }, 800);
+
+    noise = false;
+  }
+
+  if (simonTurn == playerSequence.length && good && !win) {
+    simonTurn++;
+    playerSequence = [];
+    compTurn = true;
+    numberFlashLight = 0;
+    turnCounter.innerHTML = simonTurn;
+    intervalFlashLight = setInterval(gameTurn, 800);
+  }
 }
 
-//simonPlay();
-
+function winGame() {
+  flashColor();
+  turnCounter.innerHTML = "WIN!";
+  win = true;
+  on = false;
+  setTimeout(() => {winnerAudio.play()}, 400);
+};
