@@ -47,7 +47,7 @@ strictButton.addEventListener('click', (event) => {
 onButton.addEventListener('click', (event) => {
   if (onButton.checked == true) {
     on = true;
-    turnCounter.innerHTML = "-";
+    turnCounter.innerHTML = "- -";
     selectSound.play();
   } else {
     on = false;
@@ -230,7 +230,7 @@ function verifySelected() {
         playerSequence = [];
         good = true;
         intervalFlashLight = setInterval(gameTurn, 800);
-      };
+      }
     }, 800);
 
     noise = false;
@@ -252,4 +252,4 @@ function winGame() {
   win = true;
   on = false;
   setTimeout(() => {winnerAudio.play()}, 400);
-};
+}
