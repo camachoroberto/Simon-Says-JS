@@ -31,8 +31,10 @@ const downLeft = document.querySelector('#down-left');
 const downRigth = document.querySelector('#down-rigth');
 
 const strictButton = document.querySelector("#strict");
-const onButton = document.querySelector("#on");
-const startButton = document.querySelector("#start");
+//const onButton = document.querySelector("#on");
+const startButton = document.querySelector("#startBtn");
+const setTarget = document.querySelector("[data-onoff]");
+const result = document.getElementById('result');
 
 strictButton.addEventListener('click', (event) => {
   if (strictButton.checked == true) {
@@ -44,19 +46,21 @@ strictButton.addEventListener('click', (event) => {
   }
 });
 
-onButton.addEventListener('click', (event) => {
-  if (onButton.checked == true) {
-    on = true;
+setTarget.addEventListener("change", function(){
+  if (this.checked) {
+  	on = true;
     turnCounter.innerHTML = "- -";
     selectSound.play();
-  } else {
-    on = false;
+  }
+  else{
+  	on = false;
     turnCounter.innerHTML = "";
     clearColor();
     selectSound.play();
     clearInterval(intervalFlashLight);
   }
 });
+
 
 startButton.addEventListener('click', (event) => {
   if (on || win) {

@@ -11,12 +11,6 @@ body {
     margin-right: 35px;
   }
   
-  .button {
-    border-radius: 50% !important;
-    font-size: 1.6em;
-    background-color: lightgray;
-  }
-  
   #switches {
     position: absolute;
     font-family: 'Original Surfer', cursive;
@@ -166,4 +160,151 @@ body {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+}
+
+/*Start | On-Off Button Design*/
+.btn-onoff{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.btn-onoff input{
+  display: block;
+  position: absolute;
+  opacity:0
+}
+.btn-onoff span{
+	position: relative;
+	display: block;
+	width: 0px;
+	height: 34px;
+	border-radius: 40px;
+	background: #ccc;
+	border: 1px solid #ccc;
+	-webkit-transition: 400ms;
+	-moz-transition: 400ms;
+	-ms-transition: 400ms;
+	transition: 400ms
+}
+.btn-onoff input:checked ~ span{
+  border: 1px solid #4CAF50;
+  background: #4CAF50
+}
+.btn-onoff input ~ span:before{
+	content: 'Off';
+	display: block;
+	width: 34px;
+	height: 34px;
+	position: absolute;
+	right: 0px;
+	font-size: 14px;
+	font-family: "Arial";
+	font-weight: bold;
+	line-height: 34px;
+	color: #444;
+	padding: 0px 8px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	-ms-transition: 500ms;
+	transition: 500ms
+}
+.btn-onoff input:checked ~ span:before{
+	content: 'On';
+	right: 28px;
+	color: #fff
+}
+.btn-onoff input ~ span:after{
+	content: '';
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	top: 4px;
+	left: 4px;
+	background: #fff;
+	border-radius: 50%;
+	-webkit-transition: 400ms;
+	-moz-transition: 400ms;
+	-ms-transition: 400ms;
+	transition: 400ms
+}
+.btn-onoff:hover input ~ span:after{
+	-webkit-transform:scale(0.9);
+	-moz-transform:scale(0.9);
+	-ms-transform:scale(0.9);
+	transform:scale(0.9)
+}
+.btn-onoff input:checked ~ span:after{
+	content: '';
+	left: 51px;
+}
+/*End | On-Off Button Design*/
+
+#startBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #cc2900;
+  box-shadow: 2.5px 2.5px 5px #4d4d4d;
+  margin-left: 15px;
+  margin-top: 28px;
+  border: 1.5px solid black;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Roboto Slab', serif;
+  outline: 0;
+  color: #404040;
+  
+}
+#strictBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #e6e600;
+  margin-left: 5px;
+  box-shadow: 2.5px 2.5px 5px black;
+  border: 1.5px solid #404040;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: 'Roboto Slab', serif;
+  outline: 0;
+  position: absolute;
+  margin-top: 28px;
+  color: #4d4d4d;
+}
+#strictonoff {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 8px;
+  background-color: #404040;
+  margin-top: 10px;
+  margin-left: 24px;
+  outline: 0;
+}
+
+#startBtn:hover {
+   
+    border: solid 2px #1a1a1a;
+    text-decoration: none;
+}
+#startBtn:active {
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    
+    border: solid 1px #203E5F;
+}
+#strictBtn:hover {
+   
+    border: solid 1.5px #1a1a1a;
+    text-decoration: none;
+}
+#strictBtn:active {
+    -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
+    
+    border: solid 1px #203E5F;
 }
