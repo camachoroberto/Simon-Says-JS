@@ -1,6 +1,6 @@
 // Variáveis globais
-let simonSequence = []; 
-let playerSequence = []; 
+let simonSequence = [];
+let playerSequence = [];
 let numOfLevels = 10;
 let numberFlashLight;
 let simonTurn;
@@ -36,6 +36,22 @@ const startButton = document.querySelector("#btn-start");
 const setTarget = document.querySelector("[data-onoff]");
 const result = document.getElementById('result');
 
+document.getElementById('mensagem').onclick = function () {
+  Swal.fire({
+    title: "How to Play",
+    type: "info",
+      html: "<ul style='text-align: left'>" +
+            "  <li>Click the switch to turn on.</li>" +
+            "  <li>Press play to start.</li>" +
+            "  <li>Repeat the steps in the correct order.</li>" +
+            "  <li>Turn on strict mode for an extra challege &#128513</li>" +
+            "  <li>Have Fun!</li>" +
+            "</ul>",
+      showCloseButton: true,
+      confirmButtonText: "<i class='fa fa-thumbs-up'></i> Got It!"
+  });
+};
+
 //Button Strict
 strictButton.addEventListener('click', function () {
   if (!strict) {
@@ -50,14 +66,14 @@ strictButton.addEventListener('click', function () {
 });
 
 //Button On - Off
-setTarget.addEventListener("change", function(){
+setTarget.addEventListener("change", function () {
   if (this.checked) {
-  	on = true;
+    on = true;
     turnCounter.innerHTML = "- -";
     selectSound.play();
   }
-  else{
-  	on = false;
+  else {
+    on = false;
     turnCounter.innerHTML = "";
     clearColor();
     selectSound.play();
@@ -70,7 +86,7 @@ startButton.addEventListener('click', (event) => {
   if (on || win) {
     starSound.play();
     simonPlay();
-  } else{
+  } else {
     errorStar.play();
   }
 });
@@ -263,5 +279,5 @@ function winGame() {
   turnCounter.innerHTML = "WIN!";
   win = true;
   on = false;
-  setTimeout(() => {winnerAudio.play()}, 400);
+  setTimeout(() => { winnerAudio.play() }, 400);
 }
