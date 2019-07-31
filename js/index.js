@@ -1,12 +1,12 @@
 // Variáveis globais
-let simonSequence = []; //order
-let playerSequence = []; //playerOrder
-let numOfLevels = 3; // xxxx
-let numberFlashLight; //flash
-let simonTurn; //turn
-let good; //good
-let compTurn; //compTurn
-let intervalFlashLight; //intervalId
+let simonSequence = []; 
+let playerSequence = []; 
+let numOfLevels = 10;
+let numberFlashLight;
+let simonTurn;
+let good;
+let compTurn;
+let intervalFlashLight;
 
 let strict = false;
 let noise = true;
@@ -24,28 +24,32 @@ let selectSound = new Audio('included/sounds/select.mp3');
 let starSound = new Audio('included/sounds/start.wav');
 
 // Seleção das cores do jogo
-const turnCounter = document.querySelector("#turn");
+const turnCounter = document.querySelector("#count");
 const topLeft = document.querySelector('#top-left');
 const topRigth = document.querySelector('#top-rigth');
 const downLeft = document.querySelector('#down-left');
 const downRigth = document.querySelector('#down-rigth');
 
-const strictButton = document.querySelector("#strict");
+const strictButton = document.querySelector("#btn-strict");
 //const onButton = document.querySelector("#on");
-const startButton = document.querySelector("#startBtn");
+const startButton = document.querySelector("#btn-start");
 const setTarget = document.querySelector("[data-onoff]");
 const result = document.getElementById('result');
 
-strictButton.addEventListener('click', (event) => {
-  if (strictButton.checked == true) {
+//Button Strict
+strictButton.addEventListener('click', function () {
+  if (!strict) {
     strict = true;
+    document.getElementById('strictonoff').style.background = "#990000";
     selectSound.play();
   } else {
     strict = false;
+    document.getElementById('strictonoff').style.background = "#404040";
     selectSound.play();
   }
 });
 
+//Button On - Off
 setTarget.addEventListener("change", function(){
   if (this.checked) {
   	on = true;
@@ -61,7 +65,7 @@ setTarget.addEventListener("change", function(){
   }
 });
 
-
+//Button Start
 startButton.addEventListener('click', (event) => {
   if (on || win) {
     starSound.play();
@@ -70,7 +74,8 @@ startButton.addEventListener('click', (event) => {
     errorStar.play();
   }
 });
-// Sequência aleatória das cores do jogo
+
+// Cria a sequência do jogo
 function simonPlay() {
   win = false;
   simonSequence = [];
@@ -141,6 +146,7 @@ function four() {
   downRigth.style.backgroundColor = 'lightskyblue';
 }
 
+//Função para retornar a cor do estado inicial
 function clearColor() {
   topLeft.style.backgroundColor = 'darkgreen';
   topRigth.style.backgroundColor = 'darkred';
@@ -148,6 +154,7 @@ function clearColor() {
   downRigth.style.backgroundColor = 'darkblue';
 }
 
+//Função para alterar a cor correspondente da sequencia do jogo
 function flashColor() {
   topLeft.style.backgroundColor = 'lightgreen';
   topRigth.style.backgroundColor = 'tomato';
@@ -155,7 +162,7 @@ function flashColor() {
   downRigth.style.backgroundColor = 'lightskyblue';
 }
 
-// Preferência das cores do jogador
+// Cor selecionada pelo jogador
 topLeft.addEventListener('click', (event) => {
   if (on) {
     playerSequence.push(1);
@@ -208,12 +215,13 @@ downRigth.addEventListener('click', (event) => {
   }
 });
 
+//Verifica e compara as cores selecionadas 
 function verifySelected() {
   if (playerSequence[playerSequence.length - 1] !== simonSequence[playerSequence.length - 1]) {
     good = false;
   }
   console.log(`level ${numOfLevels}`);
-  console.log(`play ${playerSequence}`);
+  console.log(`play ${playerSequence.length}`);
   if (playerSequence.length == numOfLevels && good) {
     winGame();
   }
