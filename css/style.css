@@ -323,8 +323,8 @@ body {
 /*How to play? */
 #mensagem {
   position: absolute;
-    top: -80px;
-    left: 410px;
+    top: -130px;
+    left: 370px;
   background: #494d4f;
   background-image: -webkit-linear-gradient(top, #494d4f, #2980b9);
   background-image: -moz-linear-gradient(top, #494d4f, #2980b9);
