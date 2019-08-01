@@ -1,7 +1,7 @@
 // Variáveis globais
 let simonSequence = [];
 let playerSequence = [];
-const numOfLevels = 4;
+const numOfLevels = 10;
 let numberFlashLight;
 let simonTurn;
 let good;
