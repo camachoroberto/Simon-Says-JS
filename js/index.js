@@ -1,7 +1,7 @@
 // Variáveis globais
 let simonSequence = [];
 let playerSequence = [];
-let numOfLevels = 10;
+const numOfLevels = 4;
 let numberFlashLight;
 let simonTurn;
 let good;
@@ -11,6 +11,7 @@ let intervalFlashLight;
 let strict = false;
 let noise = true;
 let on = false;
+let playerTurn = false;
 let win;
 
 let winnerAudio = new Audio('included/sounds/winner.mp3');
@@ -24,57 +25,56 @@ let selectSound = new Audio('included/sounds/select.mp3');
 let starSound = new Audio('included/sounds/start.wav');
 
 // Seleção das cores do jogo
-const turnCounter = document.querySelector("#count");
+const turnCounter = document.querySelector('#count');
 const topLeft = document.querySelector('#top-left');
 const topRigth = document.querySelector('#top-rigth');
 const downLeft = document.querySelector('#down-left');
 const downRigth = document.querySelector('#down-rigth');
 
-const strictButton = document.querySelector("#btn-strict");
-//const onButton = document.querySelector("#on");
-const startButton = document.querySelector("#btn-start");
-const setTarget = document.querySelector("[data-onoff]");
-const result = document.getElementById('result');
+const strictButton = document.querySelector('#btn-strict');
+const startButton = document.querySelector('#btn-start');
+const setTarget = document.querySelector('[data-onoff]');
+const mensagem = document.getElementById('mensagem');
 
-document.getElementById('mensagem').onclick = function () {
+mensagem.addEventListener('click', function () {
   Swal.fire({
-    title: "How to Play",
-    type: "info",
-      html: "<ul style='text-align: left'>" +
-            "  <li>Click the switch to turn on.</li>" +
-            "  <li>Press play to start.</li>" +
-            "  <li>Repeat the steps in the correct order.</li>" +
-            "  <li>Turn on strict mode for an extra challege &#128513</li>" +
-            "  <li>Have Fun!</li>" +
-            "</ul>",
-      showCloseButton: true,
-      confirmButtonText: "<i class='fa fa-thumbs-up'></i> Got It!"
+    title: 'How to Play?',
+    type: 'question',
+    html: "<ul style='text-align: left'>" +
+            '  <li>Click the switch to turn on.</li>' +
+            '  <li>Press play to start.</li>' +
+            '  <li>Repeat the steps in the correct order.</li>' +
+            '  <li>Turn on strict mode for an extra challege &#128513</li>' +
+            '  <li>Have Fun!</li>' +
+            '</ul>',
+    showCloseButton: true,
+    confirmButtonText: "<i class='fa fa-thumbs-up'></i> Got It!"
   });
-};
+});
 
 //Button Strict
 strictButton.addEventListener('click', function () {
   if (!strict) {
     strict = true;
-    document.getElementById('strictonoff').style.background = "#990000";
+    document.getElementById('strictonoff').style.background = '#990000';
     selectSound.play();
   } else {
     strict = false;
-    document.getElementById('strictonoff').style.background = "#404040";
+    document.getElementById('strictonoff').style.background = '#404040';
     selectSound.play();
   }
 });
 
 //Button On - Off
-setTarget.addEventListener("change", function () {
+setTarget.addEventListener('change', function () {
   if (this.checked) {
     on = true;
-    turnCounter.innerHTML = "- -";
+    turnCounter.innerHTML = '- -';
     selectSound.play();
   }
   else {
     on = false;
-    turnCounter.innerHTML = "";
+    turnCounter.innerHTML = '';
     clearColor();
     selectSound.play();
     clearInterval(intervalFlashLight);
@@ -109,12 +109,14 @@ function simonPlay() {
 
 // Turno do jogo
 function gameTurn() {
+  playerTurn = false;
   on = false;
   if (numberFlashLight == simonTurn) {
     clearInterval(intervalFlashLight);
     compTurn = false;
     clearColor();
     on = true;
+    playerTurn = true;
   }
 
   if (compTurn) {
@@ -180,7 +182,8 @@ function flashColor() {
 
 // Cor selecionada pelo jogador
 topLeft.addEventListener('click', (event) => {
-  if (on) {
+
+  if (on && playerTurn) {
     playerSequence.push(1);
     verifySelected();
     one();
@@ -193,7 +196,7 @@ topLeft.addEventListener('click', (event) => {
 });
 
 topRigth.addEventListener('click', (event) => {
-  if (on) {
+  if (on && playerTurn) {
     playerSequence.push(2);
     verifySelected();
     two();
@@ -206,7 +209,7 @@ topRigth.addEventListener('click', (event) => {
 });
 
 downLeft.addEventListener('click', (event) => {
-  if (on) {
+  if (on && playerTurn) {
     playerSequence.push(3);
     verifySelected();
     three();
@@ -219,7 +222,7 @@ downLeft.addEventListener('click', (event) => {
 });
 
 downRigth.addEventListener('click', (event) => {
-  if (on) {
+  if (on && playerTurn) {
     playerSequence.push(4);
     verifySelected();
     four();
@@ -276,7 +279,7 @@ function verifySelected() {
 
 function winGame() {
   flashColor();
-  turnCounter.innerHTML = "WIN!";
+  turnCounter.innerHTML = 'WIN!';
   win = true;
   on = false;
   setTimeout(() => { winnerAudio.play() }, 400);

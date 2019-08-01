@@ -81,7 +81,7 @@ body {
   border-style: solid;
   border-width: 10px;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 40px;
   box-shadow: 8px 8px 15px 5px #888888;
 }
 
@@ -274,16 +274,15 @@ body {
   height: 50px;
   border-radius: 25px;
   background-color: #e6e600;
+  box-shadow: 2.5px 2.5px 5px black;
   margin-left: 20px;
   margin-top: 28px;
-  box-shadow: 2.5px 2.5px 5px black;
   border: 1.5px solid #404040;
   cursor: pointer;
   font-weight: bold;
   font-family: "Roboto Slab", serif;
   font-size: 20px;
   outline: 0;
-  position: absolute;
   color: #4d4d4d;
 }
 #strictonoff {
@@ -320,3 +319,37 @@ body {
   border: solid 1px #203e5f;
 }
 /*End botões Star - Stric */
+
+/*How to play? */
+#mensagem {
+  position: absolute;
+    top: -80px;
+    left: 430px;
+  background: #494d4f;
+  background-image: -webkit-linear-gradient(top, #494d4f, #2980b9);
+  background-image: -moz-linear-gradient(top, #494d4f, #2980b9);
+  background-image: -ms-linear-gradient(top, #494d4f, #2980b9);
+  background-image: -o-linear-gradient(top, #494d4f, #2980b9);
+  background-image: linear-gradient(to bottom, #494d4f, #2980b9);
+  -webkit-border-radius: 30;
+  -moz-border-radius: 30;
+  border-radius: 30px;
+  -webkit-box-shadow: 5px 4px 3px #ffffff;
+  -moz-box-shadow: 5px 4px 3px #ffffff;
+  box-shadow: 5px 4px 3px #ffffff;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 26px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#mensagem:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}

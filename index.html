@@ -8,13 +8,10 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <title>Simon-Says-JS</title>
-    
+
 </head>
 
 <body>
-        <button id="mensagem">
-                Exibir mensagem
-              </button>
     <section id="big-circle">
         <div id="top-left"></div>
         <div id="top-rigth"></div>
@@ -22,11 +19,14 @@
         <div id="down-rigth"></div>
 
         <div id="inner-circle">
+                <button id="mensagem">
+                        ?
+                    </button>
             <div id="title" class="font-effect-emboss">SIMON!</div>
             <div id="switches">
                 <button id="btn-start" class="clsik">Start</button>
+                <input type="text" id="strictonoff"/>
                 <button id="btn-strict" class="clsik">Strict</button>
-                <input type="text" id="strictonoff" />
             </div>
             <div class="btn-toggle">
                 <label class="btn-onoff">
